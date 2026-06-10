@@ -27,3 +27,11 @@ async def formulario(request: Request):
     }
     
   
+@app.get("/test")
+async def test():
+
+    collection.insert_one({
+        "test": "ok"
+    })
+
+    return {"ok": True}
