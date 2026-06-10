@@ -3,31 +3,23 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-# Conexión MongoDB Atlas
-client = MongoClient(
-    "mongodb+srv://prueba:ZA5DjJgHLMxLivDNK@cluster0.p2djwko.mongodb.net/?retryWrites=true&w=majority"
-  
-)
+MONGO_URI = "mongodb+srv://prueba:ZA5DjJgHLMxLivDNK@cluster0.p2djwko.mongodb.net/?retryWrites=true&w=majority"
+
+client = MongoClient(MONGO_URI)
 
 db = client["capacitacion"]
-
 collection = db["formularios"]
-
-@app.get("/")
-def inicio():
-    return {
-        "mensaje": "API funcionando"
-    }
-
-
-
 
 @app.post("/formulario")
 async def formulario(request: Request):
+
     data = await request.json()
 
-    print(data)
+    resultado = collection.insert_one(data)
 
     return {
-        "recibido": data
+        "mensaje": "Guardado correctamente",
+        "id": str(resultado.inserted_id)
     }
+    
+  
