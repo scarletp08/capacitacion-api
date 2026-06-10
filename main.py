@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from pymongo import MongoClient
 
 app = FastAPI()
@@ -20,21 +20,14 @@ def inicio():
     }
 
 
+
+
 @app.post("/formulario")
-def formulario(data: dict):
-    try:
-        resultado = collection.insert_one(data)
-        print("INSERT OK:", resultado.inserted_id)
+async def formulario(request: Request):
+    data = await request.json()
 
-        return {
-            "ok": True,
-            "id": str(resultado.inserted_id)
-        }
+    print(data)
 
-    except Exception as e:
-        print("ERROR MONGO:", str(e))
-
-        return {
-            "ok": False,
-            "error": str(e)
-        }
+    return {
+        "recibido": data
+    }
