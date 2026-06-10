@@ -27,6 +27,13 @@ async def formulario(request: Request):
         "id": str(resultado.inserted_id)
     }
 
+@app.get("/dashboard/respuestas")
+async def respuestas():
+
+    data = list(collection.find({}, {"_id": 0}))
+
+    return data
+
 @app.get("/test")
 async def test():
 
