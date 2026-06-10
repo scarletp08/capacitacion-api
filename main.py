@@ -15,18 +15,17 @@ async def formulario(request: Request):
 
     data = await request.json()
 
-    print("DATA RECIBIDA:", data)
+    print(data)
 
     resultado = collection.insert_one(data)
 
     print("INSERTADO:", resultado.inserted_id)
 
     return {
-        "mensaje": "Guardado",
+        "mensaje": "Guardado correctamente",
         "id": str(resultado.inserted_id)
     }
-    
-  
+
 @app.get("/test")
 async def test():
 
