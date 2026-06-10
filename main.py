@@ -15,10 +15,14 @@ async def formulario(request: Request):
 
     data = await request.json()
 
+    print("DATA RECIBIDA:", data)
+
     resultado = collection.insert_one(data)
 
+    print("INSERTADO:", resultado.inserted_id)
+
     return {
-        "mensaje": "Guardado correctamente",
+        "mensaje": "Guardado",
         "id": str(resultado.inserted_id)
     }
     
