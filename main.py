@@ -3,7 +3,8 @@ from pymongo import MongoClient
 
 app = FastAPI()
 
-MONGO_URI = "mongodb+srv://prueba:ZA5DjJgHLMxLivDNK@cluster0.p2djwko.mongodb.net/?retryWrites=true&w=majority"
+MONGO_URI = "mongodb+srv://prueba:tWdYsznMmn5yZ8BQ@cluster0.p2djwko.mongodb.net/?appName=Cluster0"
+
 
 client = MongoClient(MONGO_URI)
 
